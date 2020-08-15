@@ -53,24 +53,49 @@ class Stack:
         msg="Stack data(Top to Bottom): "+msg
         return msg    
 
+#start writing your code here
+
 class LunchBox:
     def __init__(self,color,manufacturer):
-        self.__color = color 
-        self.__manufacturer = manufacturer 
+        self.__color=color
+        self.__manufacturer=manufacturer
+    
     def get_color(self):
         return self.__color
+        
     def get_manufacturer(self):
         return self.__manufacturer
-    def __str__(self):
-        print (self__color+"  "+self.__manufacturer)
-
-
-class Container:
-    def __init__(self,box_stack):
-        self.__box_stack = box_stack 
-    def get_box_stack(self):
-        return self.__box_stack 
-    def identify_count(self,color):
         
+    def __str__(self):
         pass
-#start writing your code here
+    
+class Container:
+    def __init__(self, box_stack):
+        self.__box_stack=box_stack
+        
+    def get_box_stack(self):
+        return self.box_stack
+        
+    def identify_count(self, color):
+        dt={}
+        flag=0
+        while not(self.__box_stack.is_empty()):
+            m=self.__box_stack.pop()
+            if m.get_manufacturer() in dt:
+                if m.get_color().lower()==color.lower():
+                    dt[m.get_manufacturer()]+=1
+                    flag=1
+            else:
+                if m.get_color().lower()==color.lower():
+                    dt[m.get_manufacturer()]=1
+                    flag=1
+        if flag==0:
+            return 0
+        return dt
+                    
+        pass
+        
+        
+        
+        
+        
